@@ -13,7 +13,7 @@ pipeline {
         HELLO = 'sharma'
       }
       steps {
-        echo "env.$HELLO"
+        echo "${env.HELLO} and ${HELLO}"
       }
     }  
   }
