@@ -4,10 +4,6 @@ pipeline {
       label 'master'
     }
   }
-  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '2a250168-9b26-42c7-be71-c71227ceb65c']]) {
-    echo "${env.AWS_ACCESS_KEY_ID}"
-    echo "${env.AWS_SECRET_ACCESS_KEY}"
-  }
   environment {
     HELLO = 'anmol'
   }
@@ -17,7 +13,10 @@ pipeline {
         HELLO = 'sharma'
       }
       steps {
-        echo "${env.HELLO} and ${HELLO}"
+        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: '2a250168-9b26-42c7-be71-c71227ceb65c']]) {
+          echo "${env.AWS_ACCESS_KEY_ID}"
+          echo "${env.AWS_SECRET_ACCESS_KEY}"
+        }
       }
     }
     stage ('global env') {
