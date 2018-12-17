@@ -9,6 +9,10 @@ pipeline {
       steps {
         sh '''
         #!/bin/bash
+        while $(dpkg -l zip 1>/dev/null 2>&1)
+        do
+          apt-get install zip -y -qq
+        done
         whoami
         env
         ls -l $HOME
