@@ -11,6 +11,7 @@ pipeline {
         #!/bin/bash
         while $(dpkg -l zip 1>/dev/null 2>&1)
         do
+          apt-get update
           apt-get install zip -y -qq
         done
         whoami
