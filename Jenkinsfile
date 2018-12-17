@@ -6,6 +6,6 @@ node ('master') {
     cat pipeline.tmp
   }
   stage ('cleanup') {
-    rm -f pipeline.tmp
+    rm pipeline.tmp
   }
 }
