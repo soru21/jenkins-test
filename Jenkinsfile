@@ -1,11 +1,18 @@
 pipeline {
-  agent master
+  agent {master}
   stages {
     stage ('initial') {
-      echo "Hello World ${HOSTNAME}"
+      steps {
+        echo "Hello World ${HOSTNAME}"
+      }
+      steps {
+        echo "Intermediate World ${HOSTNAME}"
+      }
     }
     stage ('final') {
-      echo "Bye World ${HOSTNAME}"
+      steps {
+        echo "Bye World ${HOSTNAME}"
+      }
     }
   }
 }
