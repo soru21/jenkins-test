@@ -5,24 +5,24 @@ pipeline {
     }
   }
   stages {
-    stage ('initial') {
+    stage ('building app.jar artifact') {
       steps {
         sh '''
-        #!/bin/bash
-        while $(dpkg -l zip 1>/dev/null 2>&1)
-        do
-          apt-get update
-          apt-get install zip -y -qq
-        done
-        whoami
-        env
-        ls -l $HOME
+        if [ -f /bin/packer ]; then
+          wget http://example.com/packer.zip
+          unzip packer.zip
+          mv packer /bin
+        fi
+        packer build build-D-P-AppDotJar.json
         '''
       }
     }
-    stage ('final') {
+    stage ('push app.jar to s3 bucket') {
       steps {
-        echo "Bye World ${HOSTNAME}"
+        sh '''
+        aws s3 cp /tmp/app.jar s3://example-dp/jar/
+        aws s3 cp /tmp/app.jar s3://example-dp/latest-env.jar
+        '''
       }
     }
   }
