@@ -9,9 +9,6 @@ pipeline {
       steps {
         echo "Hello World ${HOSTNAME}"
       }
-      steps {
-        echo "Intermediate World ${HOSTNAME}"
-      }
     }
     stage ('final') {
       steps {
