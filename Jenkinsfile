@@ -8,13 +8,18 @@ pipeline {
     HELLO = 'anmol'
   }
   stages {
-    stage ('building app.jar artifact') {
+    stage ('local env') {
       environment {
         HELLO = 'sharma'
       }
       steps {
         echo "${env.HELLO} and ${HELLO}"
       }
-    }  
+    }
+    stage ('global env') {
+      steps {
+        echo "${env.HELLO} and ${HELLO}"
+      }
+    }
   }
 }
