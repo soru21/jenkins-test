@@ -7,7 +7,12 @@ pipeline {
   stages {
     stage ('initial') {
       steps {
-        echo "Hello World ${HOSTNAME}"
+        sh '''
+        #!/bin/bash
+        whoami
+        env
+        ls -l $HOME
+        '''
       }
     }
     stage ('final') {
