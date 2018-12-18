@@ -1,6 +1,7 @@
 pipeline {
   options {
     disableConcurrentBuilds()
+    preserveStashes()
   }
   agent { 
     node {
